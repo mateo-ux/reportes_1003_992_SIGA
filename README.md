@@ -1,28 +1,23 @@
-# TalentoTech Data Updater
+# Reportes SIGA - API de Actualización
 
-Actualización automática de datos desde SIGA API a PostgreSQL.
+API para actualizar datos desde SIGA hacia PostgreSQL, ejecutable desde Google Apps Script.
 
 ## 🚀 Características
 
-- Reporte 1003: Aspirantes inscritos (64K+ registros)
-- Reporte 992: Estudiantes de 6 periodos académicos (40K+ registros)
+- Actualización de Reporte 1003 (Aspirantes)
+- Actualización de Reporte 992 (Estudiantes - 6 periodos)
 - API REST para ejecución remota
-- Ejecución local y en Render
+- Compatible con Google Apps Script
 
-## 📊 Estructura de Base de Datos
+## 📊 Endpoints
 
-### Tabla `aspirantes`
-- Datos de aspirantes inscritos
-- 64,249 registros
+### `POST /api/update`
+Ejecuta la actualización de datos en segundo plano.
 
-### Tabla `estudiantes` 
-- Datos de estudiantes por periodo académico
-- 40,149 registros consolidados
-- 6 periodos: 2024090208, 2024091608, 2024100708, 2024101510, 2025011112, 2025012710
-
-## 🛠️ Instalación Local
-
-1. Clonar repositorio:
-```bash
-git clone <tu-repositorio>
-cd render_1003
+**Ejemplo de respuesta:**
+```json
+{
+  "status": "success",
+  "message": "Actualización iniciada en segundo plano",
+  "check_status": "/api/status"
+}
