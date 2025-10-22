@@ -1,14 +1,18 @@
 services:
   - type: web
-    name: reportes-siga-updater
+    name: api-reportes-siga
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn api.app:app
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: siga-db
+          property: connectionString
       - key: SIGA_USERNAME
         value: api_user
       - key: SIGA_PASSWORD
         value: Api_user123*
+      - key: API_SECRET_KEY
+        generateValue: true
